@@ -1,20 +1,63 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, TextInput, View } from "react-native";
+import SearchFilter from "./components/SearchFilter";
+import { useState } from "react";
+
+const search = [
+  {
+    id: 0,
+    name: "Junior",
+  },
+  {
+    id: 1,
+    name: "Senior",
+  },
+  {
+    id: 2,
+    name: "Lead",
+  },
+  {
+    id: 3,
+    name: "React Native",
+  },
+  {
+    id: 4,
+    name: "JavaScript",
+  },
+  {
+    id: 5,
+    name: "C#",
+  },
+];
 
 export default function App() {
+  const [input, setInput] = useState("");
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View>
+      <View style={styles.container}>
+        <StatusBar style="auto" backgroundColor="#ddd" />
+        <TextInput
+          value={input}
+          onChangeText={(text) => setInput(text)}
+          style={styles.input}
+          placeholder="Search Item"
+        />
+      </View>
+      <SearchFilter data={search} input={input} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingVertical: 65,
+  },
+  input: {
+    borderWidth: 2,
+    height: 50,
+    borderColor: "#ddd",
+    fontSize: 18,
+    textAlign: "center",
   },
 });
